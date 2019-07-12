@@ -47,7 +47,7 @@ function cardCreator(data) {
 
     headline.textContent = data.headline;
     headshot.src = data.authorPhoto;
-    name.textContent = data.authorName;
+    byLine.textContent = data.authorName;
 
     card.appendChild(headline);
     card.appendChild(profile);
