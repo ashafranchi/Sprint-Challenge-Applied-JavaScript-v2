@@ -9,11 +9,18 @@
 //  </div >
 // And add it to the DOM in the .header-container component
 
-function Header() {
+const headerBar = document.querySelector('.header-container')
+headerBar.appendChild(createHeader());
+
+function createHeader() {
     const wholeHeader = document.createElement('div');
     const dateBar = document.createElement('span');
     const title = document.createElement('h1');
     const temperature = document.createElement('span');
+
+    wholeHeader.classList.add('header');
+    dateBar.classList.add('date');
+    temperature.classList.add('temp');
 
     dateBar.textContent = 'SMARCH 28, 2019';
     title.textContent = 'Lambda Times';
@@ -22,8 +29,6 @@ function Header() {
     wholeHeader.appendChild(dateBar);
     wholeHeader.appendChild(title);
     wholeHeader.appendChild(temperature);
-
-    wholeHeader.classList.add('header-container');
 
     return wholeHeader;
 }
