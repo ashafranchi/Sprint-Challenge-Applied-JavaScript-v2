@@ -15,8 +15,8 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
             return topics.appendChild(tabMaker(topic));
         });
     })
-    .catch(function(error) {
-        console.log(error);
+    .catch(err => {
+        console.log('error', err);
     });
 
 function tabMaker(topic) {
@@ -24,7 +24,7 @@ function tabMaker(topic) {
 
     tab.classList.add('tab');
 
-    tab.textContent = data.topics;
+    tab.textContent = topic;
 
     return tab;
 }
