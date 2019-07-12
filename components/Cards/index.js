@@ -21,31 +21,39 @@
 const cardSection = document.querySelector('.cards-container');
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
-    .then(function(working) {
-        console.log(working);
-    })
-    .catch(function(error) {
-        console.log(error);
+    .then(info => {
+        const articles = info.data.articles;
+        const articleInfo = Object.keys(articles);
+
+        articleInfo.map(topic => {
+            articles[`${topic}`].map(article => {
+                cardSection.appendChild(cardCreator(article));
+            });
+        });
     });
 
-function cardCreator() {
+function cardCreator(data) {
     const card = document.createElement('div');
     const headline = document.createElement('div');
     const profile = document.createElement('div');
     const imageContainer = document.createElement('div');
     const headshot = document.createElement('img');
     const byLine = document.createElement('span');
-    const author = document.createElement('div');
 
-    headline.textContent = obj.headline;
-    headshot.src = obj.authorPhoto;
-    temperature.textContent = `By ${obj.authorName}`;
+    card.classList.add('card');
+    headline.classList.add('headline');
+    profile.classList.add('author');
+    imageContainer.classList.add('img-container');
 
-    card.appendChild(dateBar);
-    wholeHeader.appendChild(title);
-    wholeHeader.appendChild(temperature);
+    headline.textContent = data.headline;
+    headshot.src = data.authorPhoto;
+    name.textContent = data.authorName;
 
-    wholeHeader.classList.add('cards-container');
+    card.appendChild(headline);
+    card.appendChild(profile);
+    profile.appendChild(imageContainer);
+    profile.appendChild(byLine);
+    imageContainer.appendChild(headshot);
 
-    return wholeHeader;
+    return card;
 };
